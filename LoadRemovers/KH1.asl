@@ -14,7 +14,6 @@ state("KINGDOM HEARTS FINAL MIX")
 	byte newgame : "KINGDOM HEARTS FINAL MIX.exe", 0x2E98824;
 	byte fightend : "KINGDOM HEARTS FINAL MIX.exe", 0x2D500B8;
 	ushort w1 : "KINGDOM HEARTS FINAL MIX.exe", 0x233CADC;
-	/* Old World Check Addresses. Leaving in if w1 is not enough.
 	ushort w2 : "KINGDOM HEARTS FINAL MIX.exe", 0x233CB4C;
 	ushort w3 : "KINGDOM HEARTS FINAL MIX.exe", 0x2D5CAFA;
 	ushort w4 : "KINGDOM HEARTS FINAL MIX.exe", 0x2DB41D0;
@@ -22,7 +21,6 @@ state("KINGDOM HEARTS FINAL MIX")
 	ushort w6 : "KINGDOM HEARTS FINAL MIX.exe", 0x2DE7A10;
 	ushort w7 : "KINGDOM HEARTS FINAL MIX.exe", 0x2DFE1EC;
 	ushort w8 : "KINGDOM HEARTS FINAL MIX.exe", 0x2DFE610;
-	*/
 	ushort room : "KINGDOM HEARTS FINAL MIX.exe", 0x233CB44;
 	ushort scene : "KINGDOM HEARTS FINAL MIX.exe", 0x233CB48;
 	byte camp_gummi : "KINGDOM HEARTS FINAL MIX.exe", 0x2DF1853;
@@ -175,7 +173,7 @@ split
 {
 	vars.summontimer = current.summonload ? vars.summontimer + (current.paused ? 0 : 1) : 0;
 	// station of awakening splits
-	if(current.w1 == 0){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 0)){
 		if(current.room == 2 && old.room == 1 && vars.shadows_1 == 0){
 			vars.shadows_1 = 1;
 				return settings["shadows_1"];
@@ -190,7 +188,7 @@ split
 		}
 	}
 	// destiny islands splits
-	if(current.w1 == 1){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 1)){
 		if(current.room == 3 && old.room == 0 && vars.day_1 == 0) {
 			vars.day_1 = 1;
 			return settings["day_1"];
@@ -205,7 +203,7 @@ split
 		}
 	}
 	// traverse town splits
-	if(current.w1 == 3){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 3)){
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 2 && vars.guard == 0){
 				vars.guard = 1;
@@ -262,7 +260,7 @@ split
 		}
 	}
 	// wonderland splits
-	if(current.w1 == 4){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 4)){
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 3 && vars.crank == 0){
 				vars.crank = 1;
@@ -275,7 +273,7 @@ split
 		}
 	}
 	// deep jungle splits
-	if(current.w1 == 5){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 5)){
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 2 && vars.sabor_2 == 0){
 				vars.sabor_2 = 1;
@@ -339,7 +337,7 @@ split
 		}
 	}
 	// 100 acre wood
-	if(current.w1 == 6){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 6)){
 		if(current.power_boost > old.power_boost && vars.torn_page_power == 0){
 			vars.torn_page_power = 1;
 		}
@@ -368,7 +366,7 @@ split
 		}
 	}
 	// agrabah splits
-	if(current.w1 == 8){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 8)){
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 19 && vars.pot == 0){
 				vars.pot = 1;
@@ -401,7 +399,7 @@ split
 		}
 	}
 	// atlantica splits
-	if(current.w1 == 9){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 9)){
 		if(vars.atlantica_1 == 0){
 			if(current.torn_page_count > old.torn_page_count && current.room == 13 && vars.atl_torn_page == 0){
 				vars.atl_torn_page = 1;
@@ -423,7 +421,7 @@ split
 		}
 	}
 	// halloween town splits
-	if(current.w1 == 10){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 10)){
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 9 && vars.lsb == 0){
 				vars.lsb = 1;
@@ -448,7 +446,7 @@ split
 		}
 	}
 	// olympus coliseum splits
-	if(current.w1 == 11){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 11)){
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 2 && current.scene == 0 && vars.cloud_1 == 0){
 				vars.cloud_1 = 1;
@@ -536,7 +534,7 @@ split
 		}
 	}
 	// monstro splits
-	if(current.w1 == 12){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 12)){
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 4 && vars.pc == 0){
 				vars.pc = 1;
@@ -550,7 +548,7 @@ split
 	}
 
 	// neverland splits
-	if(current.w1 == 13){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 13)){
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 6 && vars.anti == 0){
 				vars.anti = 1;
@@ -571,7 +569,7 @@ split
 		}
 	}
 	// hollow bastion splits
-	if(current.w1 == 15){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 15)){
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 4 && vars.riku == 0){
 				vars.riku = 1;
@@ -616,7 +614,7 @@ split
 		}
 	}
 	// end of world splits
-	if(current.w1 == 16){
+	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 16)){
 		if (current.hp == 0){
 			if (vars.ds3 == 1 && current.room == 30){
 				vars.ds3 = 0;
@@ -743,8 +741,8 @@ split
 	if (current.hp == 0 && ((vars.clayton_1 == 1 && vars.clayton_2 == 0) || (vars.fake_guard == 1 && vars.oppo == 0) || (vars.ds3 == 1 && vars.a2 == 0))) {
 		vars.deathcounter = 1;
 	}
-	/*WIP general fight end splits 
-	- Please comment out WIP stuff like this! This would always split past your listed settings!
+	/* WIP general fight end splits 
+	- Commented out dude to it not being toggle-able. Doesn't run unless stuff prior can't.
 	if(current.fightend == 2 && old.fightend == 0){
 		if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 9)){
 			return true;
@@ -868,13 +866,11 @@ init
 	vars.back_split = "";
 	vars.deathcounter = 0;
 	timer.IsGameTimePaused = false;
-	/* 
-	Note: This is the old world check function. I'm only leaving it in here in case only passing the w1 arg isn't enough.
+	
 	Func <ushort, ushort, ushort, ushort, ushort, ushort, ushort, ushort, int, bool> checkWorldValue = (ushort a, ushort b, ushort c, ushort d, ushort e, ushort f, ushort g, ushort h, int actual) => {
 		return a == actual || b == actual || c == actual || d == actual || e == actual || f == actual || f == actual || g == actual || h == actual;
 	};
 	vars.checkWorldValue = checkWorldValue;
-	*/
 }
 
 update
