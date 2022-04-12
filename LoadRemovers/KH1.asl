@@ -615,13 +615,6 @@ split
 	}
 	// end of world splits
 	if(vars.checkWorldValue(current.w1, current.w2, current.w3, current.w4, current.w5, current.w6, current.w7, current.w8, 16)){
-		if (current.hp == 0){
-			if (vars.ds3 == 1 && current.room == 30){
-				vars.ds3 = 0;
-			} else if (vars.behemoth_3 == 1 && current.room == 28) {
-				vars.behmoth_3 = 0;
-			}
-		}
 		if(current.fightend == 2 && old.fightend == 0){
 			if(current.room == 26 && vars.cher == 0){
 				vars.cher = 1;
