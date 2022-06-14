@@ -10,6 +10,7 @@ state("KINGDOM HEARTS II FINAL MIX", "GLOBAL")
 	byte cloneCount: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0D148;
 	short soraGauge: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0D23A;
 	short medalTimer: "KINGDOM HEARTS II FINAL MIX.exe", 0x25B71F4;
+	byte marluxiaHitCount: "KINGDOM HEARTS II FINAL MIX.exe", 0x258BDF4;
 	byte worldID: "KINGDOM HEARTS II FINAL MIX.exe", 0x714DB8;
 	byte roomID: "KINGDOM HEARTS II FINAL MIX.exe", 0x714DB9;
 	byte newgame: "KINGDOM HEARTS II FINAL MIX.exe", 0xBEBE08;
@@ -31,6 +32,7 @@ state("KINGDOM HEARTS II FINAL MIX", "JP")
 	byte cloneCount: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0C148;
 	short soraGauge: "KINGDOM HEARTS II FINAL MIX.exe", 0x2A0C23A;
 	short medalTimer: "KINGDOM HEARTS II FINAL MIX.exe", 0x25B61F4;
+	//byte marluxiaHitCount: "KINGDOM HEARTS II FINAL MIX.exe", XXXXXX;
 	byte worldID: "KINGDOM HEARTS II FINAL MIX.exe", 0x713DB8;
 	byte roomID: "KINGDOM HEARTS II FINAL MIX.exe", 0x713DB9;
 	byte newgame: "KINGDOM HEARTS II FINAL MIX.exe", 0xBECE08;
@@ -66,7 +68,8 @@ startup
 						"\nSet timer to start at 0.31 for Any%.");
 		settings.Add("splitREADME", false, "README: Auto-Split (Hover Over)");
 		settings.SetToolTip("splitREADME", "To Enable: Click the button ABOVE called 'Split'."+
-			"\nSelect the category you wish to run, the desired worlds, as well as the world's ending split.");
+						"\nSelect the category you wish to run, the desired worlds, "+
+						"as well as the world's ending split.");
 		settings.Add("Instructions 4", false, "--------------------------------");
 		settings.Add("any", false, "Any%");
 			settings.Add("STT", true, "Roxas Section", "any");
@@ -81,13 +84,13 @@ startup
 				settings.Add("02-0C-7D", false, "7 Wonders: Bag", "STT");
 				settings.Add("02-14-89", true , "Axel 2", "STT");
 
-			settings.Add("TT1", true, "Twilight Town 1 [Hover Over]", "any");
-			settings.SetToolTip("TT1", "Edit the file and change all instances of '02-1C-04' to '02-1B-04' if you want to split on the cutscene leaving Tower and not the Door.");
+			settings.Add("TT1", true, "Twilight Town 1", "any");
 				settings.Add("02-08-6C", false, "Station Plaza fight","TT1");
 				settings.Add("02-19-95", false, "Tower: Entryway Heartless","TT1");
 				settings.Add("02-1D-98", false, "Tower: Star Chamber Heartless","TT1");
 				settings.Add("02-1E-99", false, "Tower: Moon Chamber Heartless","TT1");
-				settings.Add("02-1C-04", true , "Leaving Tower (TT1)","TT1");
+				settings.Add("02-1C-04", true , "Leaving Tower (on the Door)","TT1");
+				settings.Add("02-1B-04", true , "Leaving Tower (Cutscene leaving Tower)","TT1");
 	
 
 			settings.Add("HB1", true, "Hollow Bastion 1", "any");	
@@ -213,24 +216,34 @@ startup
 				settings.Add("12-14-4A", true , "Final Xemnas","KH");
 				
 		settings.Add("AW", false, "All Remainder Optional Worlds");
-			settings.Add("PL", false, "Pride Lands","AW");
+			settings.Add("PL", true, "Pride Lands","AW");
 				settings.Add("0A-02-33", false, "Hyena Battle (Protect Timon/Pumbaa)","PL");
 				settings.Add("0A-0E-37", true , "Scar","PL");
 				settings.Add("0A-05-39", false, "Graveyard: Three Hyena Fight","PL");
 				settings.Add("0A-0F-3B", true , "Ground Shaker","PL");
-			settings.Add("SP2", false, "Space Paranoids 2","AW");
+			settings.Add("SP2", true, "Space Paranoids 2","AW");
 				settings.Add("11-02-35", false, "Light Cycle Battle","SP2");
 				settings.Add("11-04-38", false, "I/O Tower: Hallway battle","SP2");
 				settings.Add("11-07-39", false, "Solar Sailor Simulation","SP2");
 				settings.Add("11-09-3A", false, "Sark","SP2");
 				settings.Add("11-09-3B", true , "MCP (with Sark)","SP2");
-			settings.Add("100AW", false, "100 Acre Woods","AW");
-				settings.Add("100AWNS", false, "Not Supported at the Moment.","100AW");
-			settings.Add("OC2", false, "Olympus Coliseum 2","AW");
+			settings.Add("100AW", true, "100 Acre Woods","AW");
+				settings.Add("09-04-04", false, "Piglet's House","100AW");
+				settings.Add("09-03-04", false, "Rabbit's House","100AW");
+				settings.Add("09-05-04", false, "Tigger's House","100AW");
+				settings.Add("09-09-03", false, "Spooky Cave","100AW");
+				settings.Add("09-01-03", true, "Starry Hill","100AW");
+			settings.Add("OC2", true , "Olympus Coliseum 2","AW");
 				settings.Add("06-06-7E", false, "Nobodies Fight","OC2");
 				settings.Add("06-13-CA", true, "Hades","OC2");
-			settings.Add("ATL", false, "Atlantica","AW");
-				settings.Add("ATLNS", false, "Not Supported at the Moment.","ATL");		
+			settings.Add("ATL", true, "Atlantica","AW");
+				settings.Add("0B-02-3F", false, "Tutorial","ATL");
+				settings.Add("0B-04-40", false, "Swim This Way","ATL");
+				settings.Add("0B-01-33", false, "Part of Your World","ATL");
+				settings.Add("0B-03-35", false, "Under the Sea","ATL");
+				settings.Add("0B-09-41", false, "Ursula's Revenge","ATL");
+				settings.Add("0B-04-37", false, "A New Day is Dawning","ATL");
+				settings.Add("0B-04-67", true , "Basic Atlantica Split","ATL");
 				
 		settings.Add("Super", false, "All Super Bosses, and Absent Silhouettes");
 			settings.Add("Silh", false, "Absent Silhouettes", "Super");
@@ -309,18 +322,22 @@ split
 	
 	//Conditional cases if Sora or specific things need to survive
 	switch (currentLocation) {
+		//Party Member Dying Fails
 		case "12-14-4A": 
 		case "12-14-69":
 		case "10-0A-3C":
 			if(current.storyHP == 0 || current.soraHP == 0)vars.splitTimer = 10;
 			break;
+		//Demyx
 		case "04-04-37":
 		case "04-04-72":
 			if(current.cloneCount > 0 || current.soraHP == 0)vars.splitTimer = 10;
 			break;
+		//Riku?
 		case "08-07-4C":
 			if(current.storyHP == 228 && old.storyHP > 228)return settings[currentLocation];
 			break;
+		//Top Left Gauge Runs Out
 		case "04-08-34":
 		case "08-01-44":
 		case "08-01-46":
@@ -332,6 +349,7 @@ split
 		case "12-0E-65":
 			if (current.soraGauge == 0 || current.soraHP == 0)vars.splitTimer = 10;
 			break;
+		//Top Left Gauge Fills Up
 		case "0A-02-33":
 		case "0C-02-01":
 		case "0C-00-33":
@@ -342,14 +360,15 @@ split
 		case "11-07-39":
 			if (current.soraGauge == 17096 || current.soraHP == 0)vars.splitTimer = 20;
 			break;
+		//Boat Fight
 		case "10-07-3A":
 			if ((current.medalTimer!=old.medalTimer && current.medalTimer == 0) || current.soraHP == 0)vars.splitTimer = 20;
 			break;
-		/*case "AS Marluxia & Data Marluxia":
-			-> Get 'hitCount' variable 
-			if (hitCount == 0 || current.soraHP == 0)vars.splitTimer = 10;
+		//Marluxia
+		case "04-26-91":
+		case "04-26-96":
+			if (current.marluxiaHitCount == 0 || current.soraHP == 0)vars.splitTimer = 10;
 			break;
-		*/
 		default:
 			if(current.soraHP == 0)vars.splitTimer = 10;
 			break;
@@ -359,16 +378,34 @@ split
 		//print(vars.splitTimer.ToString());
 		return;
 	}
-	if (currentLocation!=oldLocation){
+	
+	if(current.fightend!=old.fightend){
+		//print("Fight ended! Loc: "+currentLocation);
+		vars.splitTimer = 10;
+		return settings[currentLocation];
+	} else if (currentLocation!=oldLocation){
 		//print("C:"+currentLocation+" O:"+oldLocation);
 		switch(oldLocation) {
 			case "02-02-48":
 			case "02-08-6C":
+			case "02-1B-04":
 			case "02-1C-04":
 			case "04-0D-08":
 			case "06-05-6F":
 			case "08-03-47":
+			case "09-01-03":
+			case "09-03-04":
+			case "09-04-04":
+			case "09-05-04":
+			case "09-09-03":
 			case "12-19-46":
+			case "0B-02-3F":
+			case "0B-04-40":
+			case "0B-01-33":
+			case "0B-03-35":
+			case "0B-09-41":
+			case "0B-04-37":
+			case "0B-04-67":
 				return settings[oldLocation];
 				break;
 			case "02-0E-05":
@@ -383,11 +420,6 @@ split
 			default:
 				break;
 		}
-	}
-	if(current.fightend!=old.fightend){
-		//print("Fight ended! Loc: "+currentLocation);
-		vars.splitTimer = 10;
-		return settings[currentLocation];
 	}
 }
 
