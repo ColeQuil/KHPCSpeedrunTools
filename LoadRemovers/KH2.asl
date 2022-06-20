@@ -322,7 +322,7 @@ split
 	
 	//Conditional cases if Sora or specific things need to survive
 	switch (currentLocation) {
-		//Party Member Dying Fails
+		//Party Member Dying
 		case "12-14-4A": 
 		case "12-14-69":
 		case "10-0A-3C":
@@ -349,7 +349,7 @@ split
 		case "12-0E-65":
 			if (current.soraGauge == 0 || current.soraHP == 0)vars.splitTimer = 10;
 			break;
-		//Top Left Gauge Fills Up
+		//Top Left Gauge Fills to MAX
 		case "0A-02-33":
 		case "0C-02-01":
 		case "0C-00-33":
@@ -373,13 +373,13 @@ split
 			if(current.soraHP == 0)vars.splitTimer = 10;
 			break;
 	}
-	if(current.fightend == false && vars.splitTimer > 0){
+	if(vars.splitTimer > 0){
+		if (current.fightend == true)return;
 		vars.splitTimer = --vars.splitTimer;
 		//print(vars.splitTimer.ToString());
 		return;
 	}
-	
-	if(current.fightend!=old.fightend){
+	if(current.fightend == true){
 		//print("Fight ended! Loc: "+currentLocation);
 		vars.splitTimer = 10;
 		return settings[currentLocation];
